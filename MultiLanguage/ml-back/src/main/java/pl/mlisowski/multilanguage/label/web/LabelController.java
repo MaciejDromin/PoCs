@@ -5,13 +5,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.mlisowski.multilanguage.label.domain.dto.LabelDto;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/label")
+@RequestMapping("/labels")
 public class LabelController {
 
     @GetMapping
-    public LabelDto getLabel(){
-        return new LabelDto("Hello from Spring!");
+    public List<LabelDto> getLabel(){
+        return List.of(new LabelDto("Hello from Spring!"));
     }
 
 }

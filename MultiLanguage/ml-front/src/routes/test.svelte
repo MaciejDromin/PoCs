@@ -1,25 +1,30 @@
 <script lang="ts">
-    export let content: string
+    type Label = {
+        content: string
+    }
+    export let labels: Label[]
 
     async function getLabel() {
         try {
-            const url = "/label"
+            const url = "/labels"
             const response = await fetch(url, {
                 method: 'GET'
             })
             return response.json()
         } catch (error) {
-            console.log("Something went wront...")
+            console.log("Something went wrong...")
         }
     }
 
-    const labelPromise = getLabel() ?? { content }
+    const labelPromise = getLabel() ?? { labels }
 </script>
 
 {#await labelPromise}
     <h1>Waiting for data</h1>
 {:then data}
-    <h1>{data?.content ?? content}</h1>
+    {#each data as label}
+        <h1>{label.content}</h1>
+    {/each}
 {:catch}
     <h1>Something went wrong</h1>
 {/await}
