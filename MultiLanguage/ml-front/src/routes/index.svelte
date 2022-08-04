@@ -1,2 +1,28 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script lang="ts">
+    import type { Label } from "../lib/Label"
+    export let labels: Label[]
+
+    async function getLabel() {
+        try {
+            const url = "/labels"
+            const response = await fetch(url, {
+                method: 'GET'
+            })
+            return response.json()
+        } catch (error) {
+            console.log("Something went wrong...")
+        }
+    }
+
+    const labelPromise = getLabel() ?? { labels }
+</script>
+
+{#await labelPromise}
+    <h1>Waiting for data</h1>
+{:then data}
+    {#each data as label}
+        <h1>{label.content}</h1>
+    {/each}
+{:catch}
+    <h1>Something went wrong</h1>
+{/await}
