@@ -1,5 +1,8 @@
 <script lang="ts">
     import type { Label } from "../lib/Label"
+    import en from '$lib/assets/en.png'
+    import pl from '$lib/assets/pl.png'
+    import Flag from '../components/Flag.svelte'
     export let labels: Label[] = []
     let test = "Hey, I have been called from Spring!"
 
@@ -27,6 +30,9 @@
     }
 
 </script>
+
+<Flag alt="English" src={en} isSelected={true} />
+<Flag alt="Polish" src={pl} />
 
 {#await labelPromise}
     <h1>Waiting for data</h1>
