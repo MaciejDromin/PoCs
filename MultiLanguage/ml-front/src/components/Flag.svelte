@@ -4,7 +4,7 @@
     export let isSelected:boolean = false
 </script>
 
-<div class:selected="{isSelected}">
+<div class:selected="{isSelected}" on:click>
     <img class="img-dims" alt="{alt}" src={src} />
 </div>
 

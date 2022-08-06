@@ -1,10 +1,10 @@
-import type { RequestHandler } from "@sveltejs/kit";
-import type { Label } from "../lib/Label"
+import type { RequestEvent, RequestHandler } from "@sveltejs/kit";
+import type { Label } from "../../lib/Label"
 
 /** @type {import('@sveltejs/kit').RequestHandler} */
-export async function GET() {
-    const url = "http://localhost:8080/labels"
-    const response = await fetch(url, {
+export async function GET({ url }:RequestEvent) {
+    const urlTo = "http://localhost:8080/labels" + url.search
+    const response = await fetch(urlTo, {
         method: 'GET',
         headers: {
             'Accept': 'application/json'

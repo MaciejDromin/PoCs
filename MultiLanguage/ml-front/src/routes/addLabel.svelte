@@ -12,7 +12,7 @@
             content: content
         }
         try {
-            const url = "/labels"
+            const url = "/api/labels"
             const response = await fetch(url, {
                 method: 'POST',
                 headers: {
